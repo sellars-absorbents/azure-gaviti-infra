@@ -11,3 +11,4 @@ az deployment group create \
   --resource-group $RESOURCE_GROUP \
   --template-file infrastructure/gaviti-project/main.bicep \
   --parameters subnetName=$SUBNET_NAME
+  --parameters location="Central US"

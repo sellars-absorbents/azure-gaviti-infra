@@ -1,5 +1,13 @@
 @description('Location for all resources')
-param location string = resourceGroup().location
+param location string = 'Central US'
+
+module servicePlans 'modules/appServicePlan.bicep' = {
+  name: 'appServicePlanDeployment'
+  params: {
+    location: location
+  }
+}
+
 
 @description('Name of the VNet and subnet used for integration')
 param vnetName string
