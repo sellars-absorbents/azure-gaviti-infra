@@ -1,0 +1,16 @@
+# Local environment
+*.log
+*.zip
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Bicep compiled JSON
+*.json
+
+# Azure pipeline artifacts
+azure-pipelines.yml

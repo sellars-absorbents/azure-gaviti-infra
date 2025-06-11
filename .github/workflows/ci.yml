@@ -1,0 +1,20 @@
+name: Bicep CI
+
+on:
+  push:
+    paths:
+      - 'infrastructure/**.bicep'
+      - '.github/workflows/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Azure CLI
+        uses: azure/setup-azure@v3
+      - name: Install Bicep
+        run: az bicep install
+      - name: Validate Bicep files
+        run: |
+          find infrastructure -name '*.bicep' -print0 | xargs -0 -n1 az bicep build --stdout
