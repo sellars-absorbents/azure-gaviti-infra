@@ -1,0 +1,1 @@
+[functionApp.bicep content]

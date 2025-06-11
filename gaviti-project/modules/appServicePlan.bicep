@@ -1,0 +1,1 @@
+[appServicePlan.bicep content]

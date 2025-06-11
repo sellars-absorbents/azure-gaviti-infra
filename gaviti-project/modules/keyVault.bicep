@@ -1,0 +1,1 @@
+[keyVault.bicep content]

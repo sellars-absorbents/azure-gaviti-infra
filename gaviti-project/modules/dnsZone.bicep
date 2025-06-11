@@ -1,0 +1,1 @@
+[dnsZone.bicep content]

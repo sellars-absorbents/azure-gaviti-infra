@@ -1,0 +1,1 @@
+[main.bicep content from earlier response]
