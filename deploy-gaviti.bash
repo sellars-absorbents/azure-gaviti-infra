@@ -1,8 +1,12 @@
 #!/bin/bash
 
-RESOURCE_GROUP="your-resource-group"
-SUBNET_NAME="AppSvc-Prod-Subnet"
+#!/bin/bash
 
+# Set your target resource group and subnet
+RESOURCE_GROUP="fa-gaviti-dev"
+SUBNET_NAME="dev" # Make this an Environment Variable""
+
+# Deploy the Gaviti infrastructure
 az deployment group create \
   --resource-group $RESOURCE_GROUP \
   --template-file infrastructure/gaviti-project/main.bicep \
