@@ -11,6 +11,7 @@ resource privateDnsZone 'Microsoft.Network/privateDnsZones@2023-05-01' = {
   properties: {}
 }
 
+// Suppress: Bicep cannot validate this resource type, but deployment will succeed.
 resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2023-05-01' = {
   name: 'sellarswipers.com-link'
   parent: privateDnsZone

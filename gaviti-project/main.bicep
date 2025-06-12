@@ -79,9 +79,9 @@ module faGavitiDev 'modules/functionApp.bicep' = {
     location: location
     functionAppName: 'fa-gaviti-dev'
     appServicePlanName: aspSamShared.name
-    storageAccountName: storage.name
+    // storageAccountName: storage.name
     subnetResourceId: subnet.id
-    keyVaultName: 'kv.sam.dev'
+    // keyVaultName: 'kv.sam.dev'
   }
 }
 
@@ -91,8 +91,8 @@ module faGavitiUat 'modules/functionApp.bicep' = {
     location: location
     functionAppName: 'fa-gaviti-uat'
     appServicePlanName: aspSamShared.name
-    storageAccountName: storage.name
+    // storageAccountName: storage.name
     subnetResourceId: subnet.id
-    keyVaultName: 'kv.sam.uat'
+    // keyVaultName: 'kv.sam.uat'
   }
 }
