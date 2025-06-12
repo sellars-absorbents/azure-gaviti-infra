@@ -72,35 +72,27 @@ resource aspSamShared 'Microsoft.Web/serverfarms@2022-03-01' = {
 // ------------------------------------------------------
 // Function Apps
 // ------------------------------------------------------
-module faGavitiProd 'modules/functionApp.bicep' = {
-    name: 'fa-gaviti-prod'
-    params: {
-        location: location
-        functionAppName: 'fa-gaviti-prod'
-        appServicePlanId: aspSamProd.id
-        storageAccountName: storage.name
-        subnetResourceId: subnet.id
-    }
-}
 
-module faGavitiDev 'functionApp.bicep' = {
+module faGavitiDev 'modules/functionApp.bicep' = {
   name: 'fa-gaviti-dev'
   params: {
     location: location
     functionAppName: 'fa-gaviti-dev'
-    appServicePlanId: aspSamShared.id
+    appServicePlanName: aspSamShared.name
     storageAccountName: storage.name
     subnetResourceId: subnet.id
+    keyVaultName: 'kv.sam.dev'
   }
 }
 
-module faGavitiUat 'functionApp.bicep' = {
+module faGavitiUat 'modules/functionApp.bicep' = {
   name: 'fa-gaviti-uat'
   params: {
     location: location
     functionAppName: 'fa-gaviti-uat'
-    appServicePlanId: aspSamShared.id
+    appServicePlanName: aspSamShared.name
     storageAccountName: storage.name
     subnetResourceId: subnet.id
+    keyVaultName: 'kv.sam.uat'
   }
 }

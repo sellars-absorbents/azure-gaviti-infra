@@ -8,14 +8,14 @@ param functionAppName string
 @description('Name of the App Service Plan to attach')
 param appServicePlanName string
 
-@description('Name of the associated Storage Account')
-param storageAccountName string
+// @description('Name of the associated Storage Account')
+// param storageAccountName string
 
 @description('Resource ID of the VNet subnet for integration')
 param subnetResourceId string
 
-@description('Name of the Key Vault for secret references')
-param keyVaultName string
+// @description('Name of the Key Vault for secret references')
+// param keyVaultName string
 
 resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
   name: functionAppName
@@ -25,10 +25,10 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
     serverFarmId: resourceId('Microsoft.Web/serverfarms', appServicePlanName)
     siteConfig: {
       appSettings: [
-        {
-          name: 'AzureWebJobsStorage'
-          value: '@Microsoft.KeyVault(SecretUri=https://${keyVaultName}.vault.azure.net/secrets/SqlConnectionString/)'
-        }
+        // {
+        //   name: 'AzureWebJobsStorage'
+        //   value: '@Microsoft.KeyVault(SecretUri=https://${keyVaultName}.vault.azure.net/secrets/SqlConnectionString/)'
+        // }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
           value: '~4'
@@ -37,14 +37,14 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
           name: 'FUNCTIONS_WORKER_RUNTIME'
           value: 'dotnet'
         }
-        {
-          name: 'GavitiApiKey'
-          value: concat('@Microsoft.KeyVault(SecretUri=https://', keyVaultName, '.vault.azure.net/secrets/GavitiApiKey/)')
-        }
-        {
-          name: 'HubSpotApiKey'
-          value: concat('@Microsoft.KeyVault(SecretUri=https://', keyVaultName, '.vault.azure.net/secrets/HubSpotApiKey/)')
-        }
+        // {
+        //   name: 'GavitiApiKey'
+        //   value: '@Microsoft.KeyVault(SecretUri=https://${keyVaultName}.${environment().suffixes.keyVaultDns}/secrets/GavitiApiKey/)'
+        // }
+        // {
+        //   name: 'HubSpotApiKey'
+        //   value: '@Microsoft.KeyVault(SecretUri=https://${keyVaultName}.${environment().suffixes.keyVaultDns}/secrets/HubSpotApiKey/)'
+        // }
       ]
       vnetRouteAllEnabled: true
     }
@@ -53,11 +53,10 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
 }
 
 resource vnetIntegration 'Microsoft.Web/sites/virtualNetworkConnections@2022-03-01' = {
-  name: '${functionApp.name}/vnet'
+  name: 'vnet'
+  parent: functionApp
   properties: {
-    subnetResourceId: subnetResourceId
+    vnetResourceId: subnetResourceId
   }
-  dependsOn: [
-    functionApp
-  ]
+  // dependsOn removed as it is unnecessary
 }

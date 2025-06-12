@@ -21,5 +21,4 @@ resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2023-05
     }
     registrationEnabled: false
   }
-  dependsOn: [privateDnsZone]
 }

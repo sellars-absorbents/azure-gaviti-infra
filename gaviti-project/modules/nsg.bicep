@@ -24,7 +24,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-04-01' = {
           destinationPortRange: '443'
           sourceAddressPrefix: '*'
           destinationAddressPrefixes: [
-            'api.gaviti.com',
+            'api.gaviti.com'
             '52.85.110.0/24' // placeholder if FQDN not supported
           ]
         }
@@ -40,8 +40,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-04-01' = {
           destinationPortRange: '443'
           sourceAddressPrefix: '*'
           destinationAddressPrefixes: [
-            'api.hubapi.com',
-            '104.18.0.0/16' // placeholder
+            'api.hubapi.com'
+            // '104.18.0.0/16' // placeholder
           ]
         }
       }
@@ -84,5 +84,4 @@ resource subnetAssoc 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
       id: nsg.id
     }
   }
-  dependsOn: [nsg]
 }
