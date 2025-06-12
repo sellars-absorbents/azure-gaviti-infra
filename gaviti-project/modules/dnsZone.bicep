@@ -7,7 +7,7 @@ param vnetId string
 
 resource privateDnsZone 'Microsoft.Network/privateDnsZones@2023-05-01' = {
   name: 'sellarswipers.com'
-  location: 'global'
+  location: location
   properties: {}
 }
 
@@ -15,7 +15,7 @@ resource privateDnsZone 'Microsoft.Network/privateDnsZones@2023-05-01' = {
 resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2023-05-01' = {
   name: 'sellarswipers.com-link'
   parent: privateDnsZone
-  location: 'global'
+  location: location
   properties: {
     virtualNetwork: {
       id: vnetId
